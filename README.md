@@ -1,2 +1,2 @@
 # VUESKU-
-通过选项生成SKU组合
+JQ+VUE通过选项生成SKU组合

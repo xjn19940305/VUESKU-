@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <div class="spec-content">
+            <div v-for="item in  SkuList" class="spec-group" style="margin:10px;" spId="1" v-bind:spName="item.name">
+                <div class="title">{{item.name}}</div>
+                <div class="value-content row">
+                    <div class="col-md-2" v-for="items in item.children">
+                        <input type="checkbox" :checked="items.checked" v-bind:spValueName="items.name" :value="items.name" v-on:change="TableChange">{{items.name}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="createTable"></div>
+    </div>
+
+</body>
+</html>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/vue-resource.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/sku.js"></script>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            SkuList: JSON.parse(
+                '[{"id":"72116090e3954a6596f7a42ff317b290","name":"电视机尺寸","PropertyType":"2","Val":null,"children":[{"id":"ed8b1c12c04144e39f3f23218275785c","name":"30寸","PropertyType":null,"Val":"30寸","children":[]},{"id":"463112d83e0943938d95f891a90818ce","name":"20寸","PropertyType":null,"Val":"20寸","children":[]},{"id":"2ca5eff9d13147239db6711fe7edb033","name":"16寸","PropertyType":null,"Val":"16寸","children":[]}]},{"id":"091bc18bcefa4897b13894f5fe193048","name":"颜色","PropertyType":"2","Val":null,"children":[{"id":"4033c6702d3c44d5ade16c19e16f5c24","name":"蓝色","PropertyType":null,"Val":"蓝色","children":[]},{"id":"6718695166454071a249d0034da4f6ea","name":"黄色","PropertyType":null,"Val":"黄色","children":[]},{"id":"f81ec9d8b1344286b37239ce4562727b","name":"红色","PropertyType":null,"Val":"红色","children":[]}]}]')
+
+        },
+        filters: {
+        },
+        mounted: function () {
+        },
+        methods: {            
+            TableChange: function() {
+                var temp = sku.GetSku();
+                sku.createTable(temp);
+            }
+
+        }
+    })
+</script>
